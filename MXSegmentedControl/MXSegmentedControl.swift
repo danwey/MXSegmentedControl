@@ -279,8 +279,10 @@ open class MXSegmentedControl: UIControl {
         if context == &self.context {
             
             if let scrollView = scrollView, scrollView.isDragging || scrollView.isDecelerating {
-                progress = CGFloat(scrollView.contentOffset.x / scrollView.frame.size.width)
-                selectedIndex = Int(roundf( Float(progress) ))
+                if (scrollView.frame.size.width > 0) {
+                    progress = CGFloat(scrollView.contentOffset.x / scrollView.frame.size.width)
+                    selectedIndex = Int(roundf( Float(progress) ))
+                }
             }
             
         } else {
